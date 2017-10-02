@@ -23,5 +23,9 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable long id){
         _customerService.deleteCustomer(id);
     }
+    @RequestMapping(value="/customer/{id}")
+    public Customer getCustomerById(@PathVariable long id){
+        return _customerService.getCustomerById(id);
+    }
 
 }
