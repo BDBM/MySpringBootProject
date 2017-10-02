@@ -88,4 +88,30 @@ public String editCustomer(Customer customer){
     return response;
 }
 
+    @Override
+    public String deleteCustomer(long id) {
+
+        String response = null;
+
+        String cusNo ="PCUSID";
+        String responseMsg = "PERROR";
+
+        try {
+
+            StoredProcedureQuery storedProcedure = entityManager.createStoredProcedureQuery("MY_TEST_PACKAGE.USR_CUSTOMER_DELE");
+
+            storedProcedure.registerStoredProcedureParameter(cusNo, Long.class, ParameterMode.IN);
+            storedProcedure.registerStoredProcedureParameter(responseMsg, String.class, ParameterMode.OUT);
+
+            storedProcedure.setParameter(cusNo, id);
+
+            storedProcedure.execute();
+
+            response = (String) storedProcedure.getOutputParameterValue(responseMsg);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+        return response;
+    }
+
 }

@@ -19,5 +19,9 @@ public class CustomerController {
     public void EditCustomer(@RequestBody Customer customer,@PathVariable long id){
         _customerService.editCustomer(customer,id);
     }
+    @RequestMapping(method=RequestMethod.DELETE,value="/customer/{id}")
+    public void deleteCustomer(@PathVariable long id){
+        _customerService.deleteCustomer(id);
+    }
 
 }

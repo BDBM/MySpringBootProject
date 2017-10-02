@@ -6,4 +6,5 @@ package com.misl.customer;
 public interface ICustomerService {
     public String CreateCustomer(Customer customer);
     public String editCustomer(Customer customer,long id);
+    public String deleteCustomer(long id);
 }

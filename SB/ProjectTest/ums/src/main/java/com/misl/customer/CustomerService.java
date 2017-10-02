@@ -20,4 +20,9 @@ public class CustomerService implements ICustomerService{
         return _customerRepository.editCustomer(customer);
     }
 
+    @Override
+    public String deleteCustomer(long id) {
+        return _customerRepository.deleteCustomer(id);
+    }
+
 }

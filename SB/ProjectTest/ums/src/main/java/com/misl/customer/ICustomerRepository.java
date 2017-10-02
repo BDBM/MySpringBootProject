@@ -6,4 +6,5 @@ package com.misl.customer;
 public interface ICustomerRepository {
     public String createCustomer(Customer customer);
     public String editCustomer(Customer customer);
+    public String deleteCustomer(long id);
 }
