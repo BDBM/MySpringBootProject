@@ -3,6 +3,8 @@ package com.misl.customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by Mojidul on 27-Sep-17.
  */
@@ -25,7 +27,12 @@ public class CustomerController {
     }
     @RequestMapping(value="/customer/{id}")
     public Customer getCustomerById(@PathVariable long id){
+        //return _customerService.getCustomerById(id);
         return _customerService.getCustomerById(id);
+    }
+    @RequestMapping(value="/customers")
+    public List<Customer> getAllCustomer(){
+        return _customerService.getAllCustomer();
     }
 
 }

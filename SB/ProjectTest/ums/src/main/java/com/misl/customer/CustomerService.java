@@ -3,6 +3,8 @@ package com.misl.customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Mojidul on 27-Sep-17.
  */
@@ -28,6 +30,11 @@ public class CustomerService implements ICustomerService{
     @Override
     public Customer getCustomerById(long id) {
         return _customerRepository.getCustomerById(id);
+    }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        return _customerRepository.getAllCustomer();
     }
 
 }

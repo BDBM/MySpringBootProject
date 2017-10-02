@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Mojidul on 27-Sep-17.
@@ -141,6 +143,30 @@ public String editCustomer(Customer customer){
             throw new RuntimeException(ex.getMessage());
         }
         return customer;
+    }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        ArrayList<Customer> allCustomer = new ArrayList<Customer>();
+        try {
+            CallableStatement cs = dataSource.getConnection().prepareCall("{call MY_TEST_PACKAGE.GET_ALL_CUSTOMERS(?)}");
+            cs.registerOutParameter(1, -10);
+            cs.execute();
+            ResultSet rs = (ResultSet)cs.getObject(1);
+            while (rs.next()){
+                Customer customer = new Customer();
+                customer.setId(rs.getInt("CUSID"));
+                customer.setName(rs.getString("CUSNAME"));
+                customer.setFathername(rs.getString("CUSFATHERNAME"));
+                customer.setMothername(rs.getString("CUSMOTHERNAME"));
+                customer.setPhone(rs.getString("CUSPHONE"));
+                allCustomer.add(customer);
+
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+        return allCustomer;
     }
 
 }
