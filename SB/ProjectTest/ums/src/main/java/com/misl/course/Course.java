@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="CourseInfo")
 public class Course {
-
+/* test */
     @Id
     @GeneratedValue
     private int id;
